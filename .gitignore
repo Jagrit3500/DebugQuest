@@ -2,7 +2,10 @@ __pycache__/
 *.pyc
 .venv/
 outputs/
-results/
 wandb/
 .ipynb_checkpoints/
 .env
+model/
+*.pt
+*.bin
+*.safetensors
