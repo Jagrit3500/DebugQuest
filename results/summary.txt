@@ -1,0 +1,13 @@
+Baseline solve rate: 0%
+Baseline reward: 0.3723
+
+After GRPO:
+Reward: 0.8225
+Tool sequence accuracy: 100%
+
+Generalization:
+Avg reward: 0.6385
+Solve rate: 0%
+
+Learned sequence:
+run_tests -> read_file -> apply_fix -> submit_solution
