@@ -1,0 +1,17 @@
+{
+  "case_id": "l1-004",
+  "level": 1,
+  "level_name": "Level 1: Syntax Bug",
+  "files": {
+    "cart.py": "def total_price(prices):\n    total = 0\n    for i in range(len(prices) + 1):\n        total += prices[i]\n    return total\n\n\ndef apply_discount(prices, discount):\n    return total_price(prices) * (1 - discount)\n"
+  },
+  "test_file": "from cart import total_price, apply_discount\n\n\ndef test_total_basic():\n    assert total_price([10, 20, 30]) == 60\n\n\ndef test_total_single():\n    assert total_price([7]) == 7\n\n\ndef test_discount_basic():\n    assert apply_discount([50, 50], 0.1) == 90\n\n\ndef test_total_empty():\n    assert total_price([]) == 0\n",
+  "test_filename": "test_cart.py",
+  "ground_truth_fix": {
+    "cart.py": "def total_price(prices):\n    total = 0\n    for i in range(len(prices)):\n        total += prices[i]\n    return total\n\n\ndef apply_discount(prices, discount):\n    return total_price(prices) * (1 - discount)\n"
+  },
+  "changed_lines": {
+    "cart.py": [3]
+  },
+  "bug_description": "Off-by-one bug in total_price: loop iterates one index past the end of the list."
+}

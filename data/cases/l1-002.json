@@ -1,0 +1,17 @@
+{
+  "case_id": "l1-002",
+  "level": 1,
+  "level_name": "Level 1: Syntax Bug",
+  "files": {
+    "strings.py": "def reverse_text(text):\n    result = \"\"\n    for i in range(len(text), -1, -1):\n        result += text[i]\n    return result\n\n\ndef is_palindrome(text):\n    cleaned = text.lower().replace(\" \", \"\")\n    return cleaned == reverse_text(cleaned)\n"
+  },
+  "test_file": "from strings import reverse_text, is_palindrome\n\n\ndef test_reverse_basic():\n    assert reverse_text(\"abc\") == \"cba\"\n\n\ndef test_reverse_single():\n    assert reverse_text(\"x\") == \"x\"\n\n\ndef test_reverse_empty():\n    assert reverse_text(\"\") == \"\"\n\n\ndef test_palindrome_true():\n    assert is_palindrome(\"level\") is True\n",
+  "test_filename": "test_strings.py",
+  "ground_truth_fix": {
+    "strings.py": "def reverse_text(text):\n    result = \"\"\n    for i in range(len(text) - 1, -1, -1):\n        result += text[i]\n    return result\n\n\ndef is_palindrome(text):\n    cleaned = text.lower().replace(\" \", \"\")\n    return cleaned == reverse_text(cleaned)\n"
+  },
+  "changed_lines": {
+    "strings.py": [3]
+  },
+  "bug_description": "Off-by-one bug in reverse_text: loop starts at len(text), which is outside the valid index range."
+}

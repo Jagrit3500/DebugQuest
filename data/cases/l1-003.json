@@ -1,0 +1,17 @@
+{
+  "case_id": "l1-003",
+  "level": 1,
+  "level_name": "Level 1: Syntax Bug",
+  "files": {
+    "stats.py": "def min_value(items):\n    best = items[0]\n    for i in range(len(items) + 1):\n        if items[i] < best:\n            best = items[i]\n    return best\n\n\ndef max_value(items):\n    best = items[0]\n    for item in items:\n        if item > best:\n            best = item\n    return best\n"
+  },
+  "test_file": "from stats import min_value, max_value\n\n\ndef test_min_basic():\n    assert min_value([3, 1, 2]) == 1\n\n\ndef test_min_single():\n    assert min_value([5]) == 5\n\n\ndef test_min_negative():\n    assert min_value([0, -2, 4]) == -2\n\n\ndef test_max_basic():\n    assert max_value([3, 1, 2]) == 3\n",
+  "test_filename": "test_stats.py",
+  "ground_truth_fix": {
+    "stats.py": "def min_value(items):\n    best = items[0]\n    for i in range(len(items)):\n        if items[i] < best:\n            best = items[i]\n    return best\n\n\ndef max_value(items):\n    best = items[0]\n    for item in items:\n        if item > best:\n            best = item\n    return best\n"
+  },
+  "changed_lines": {
+    "stats.py": [3]
+  },
+  "bug_description": "Off-by-one bug in min_value: loop iterates one index past the end of the list."
+}
